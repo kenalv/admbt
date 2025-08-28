@@ -1,6 +1,6 @@
 // API Configuration - Using hardcoded defaults for template
 export const API_ENDPOINTS = {
-  wordpress: 'http://localhost:8000/wp-json/wp/v2',
+  wordpress: 'http://localhost:8090/wp-json/wp/v2',
   nodeApi: 'http://localhost:3001/api',
   backend: 'http://localhost:8080/api',
 } as const;
