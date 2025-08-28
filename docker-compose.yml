@@ -19,14 +19,13 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     # Connect to WordPress network if needed
-    networks:
-      - default
-      - wpdt-network
+    #networks:
+    #  - default
+    #  - your-existing-network-name
 
-# Note: No volumes or networks needed since we're connecting to external containers
-# Your existing backend containers should be accessible via host.docker.internal
-
-networks:
-  wpdt-network:
-    external: true
-    name: wpdt-network
+# This compose file assumes your backend containers are already running
+# You can also join an existing Docker network if your backends use one:
+# networks:
+#   default:
+#     external:
+#       name: your-existing-network-name
