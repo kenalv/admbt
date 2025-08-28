@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # Astro Development Server - Connects to external backend containers
+  astro-dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=development
+      # Configure these to match your existing backend container ports
+      - BACKEND_API_URL=${BACKEND_API_URL:-http://host.docker.internal:8080/api}
+      - WP_API_URL=${WP_API_URL:-http://host.docker.internal:8000/wp-json/wp/v2}
+      - NODE_API_URL=${NODE_API_URL:-http://host.docker.internal:3001/api}
+      - PYTHON_API_URL=${PYTHON_API_URL:-http://host.docker.internal:8001}
+      - DOTNET_API_URL=${DOTNET_API_URL:-http://host.docker.internal:5000}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    # Enable access to host containers
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+# This compose file assumes your backend containers are already running
+# You can also join an existing Docker network if your backends use one:
+# networks:
+#   default:
+#     external:
+#       name: your-existing-network-name

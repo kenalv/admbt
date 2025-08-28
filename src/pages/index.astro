@@ -1,0 +1,332 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Astro Docker Multi-Backend Template">
+  <div class="container">
+    <h1>🚀 Astro Docker Multi-Backend Template</h1>
+    <p>A production-ready Astro template designed to connect with your existing backend containers!</p>
+    
+    <div class="hero-links">
+      <a href="/api-test" class="btn btn-primary">Test API Connections</a>
+      <a href="https://github.com/yourusername/astro-docker-multi-backend-template" class="btn btn-secondary" target="_blank">View on GitHub</a>
+    </div>
+    
+    <div class="features">
+      <h2>🔧 Multi-Backend Support</h2>
+      <p>Ready to connect with various backend technologies:</p>
+      
+      <div class="backend-cards">
+        <div class="card">
+          <h3>🌐 WordPress Headless</h3>
+          <p>REST API & GraphQL ready</p>
+          <div class="tech-tags">
+            <span class="tag">REST API</span>
+            <span class="tag">WP-JSON</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>⚡ Node.js APIs</h3>
+          <p>Express, Fastify, NestJS</p>
+          <div class="tech-tags">
+            <span class="tag">Express</span>
+            <span class="tag">Fastify</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>🐍 Python APIs</h3>
+          <p>Django, FastAPI, Flask</p>
+          <div class="tech-tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Django</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>🟦 .NET Core</h3>
+          <p>ASP.NET Core APIs</p>
+          <div class="tech-tags">
+            <span class="tag">ASP.NET</span>
+            <span class="tag">Web API</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>☕ Java APIs</h3>
+          <p>Spring Boot support</p>
+          <div class="tech-tags">
+            <span class="tag">Spring</span>
+            <span class="tag">Boot</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>🔧 Custom APIs</h3>
+          <p>Any REST/GraphQL API</p>
+          <div class="tech-tags">
+            <span class="tag">REST</span>
+            <span class="tag">GraphQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="getting-started">
+      <h2>🚀 Quick Start</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Configure APIs</h3>
+            <p>Copy <code>.env.example</code> to <code>.env</code> and set your backend URLs</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Start Development</h3>
+            <p>Run <code>npm run dev</code> or <code>docker-compose -f docker-compose.dev.yml up</code></p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Test Connections</h3>
+            <p>Visit <a href="/api-test">/api-test</a> to verify your backend connections</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Build Your App</h3>
+            <p>Start creating pages and components with your API data!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="docker-info">
+      <h2>🐳 Docker Ready</h2>
+      <div class="docker-commands">
+        <div class="command-card">
+          <h4>Development</h4>
+          <code>docker-compose -f docker-compose.dev.yml up</code>
+        </div>
+        <div class="command-card">
+          <h4>Production</h4>
+          <code>docker-compose up -d</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffd700, #ff6b35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-links {
+    margin: 2rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .features {
+    margin: 4rem 0;
+  }
+  
+  .backend-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card h3 {
+    margin-top: 0;
+    color: #ffd700;
+    font-size: 1.25rem;
+  }
+  
+  .tech-tags {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .tag {
+    background: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+  }
+  
+  .getting-started {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 3rem 0;
+  }
+  
+  .getting-started h2 {
+    color: #ffd700;
+    margin-top: 0;
+  }
+  
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+  }
+  
+  .step-number {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .step-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+  }
+  
+  .docker-info {
+    margin: 3rem 0;
+  }
+  
+  .docker-info h2 {
+    color: #ffd700;
+  }
+  
+  .docker-commands {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .command-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .command-card h4 {
+    margin-top: 0;
+    color: #ffd700;
+  }
+  
+  code {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #ffd700;
+    display: block;
+    margin-top: 0.5rem;
+    word-break: break-all;
+  }
+  
+  a {
+    color: #ffd700;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-links {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 200px;
+    }
+    
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

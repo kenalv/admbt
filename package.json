@@ -1,0 +1,26 @@
+{
+  "name": "astro-docker-multi-backend-template",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Astro Docker Multi-Backend Template - A production-ready template with Docker support for connecting to various backend containers",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "start": "astro dev --host 0.0.0.0",
+    "build": "astro check && astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "astro": "astro",
+    "check": "astro check",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker-compose up -d",
+    "docker:build": "docker build -t astro-multi-backend-template ."
+  },
+  "dependencies": {
+    "astro": "^4.15.0",
+    "@astrojs/node": "^8.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.0",
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0"
+  }
+}

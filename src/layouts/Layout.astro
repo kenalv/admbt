@@ -1,0 +1,40 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Astro Docker Template", description = "A blank Astro template with Docker support for various backends" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+    <style>
+      html {
+        font-family: system-ui, sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: white;
+      }
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    </style>
+  </body>
+</html>

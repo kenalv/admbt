@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { API_ENDPOINTS } from '../utils/api';
+---
+
+<Layout title="API Test - Astro Docker Template">
+  <div class="container">
+    <h1>🔌 Backend API Connections</h1>
+    <p>Test your backend API connections</p>
+    
+    <div class="api-tests">
+      <div class="api-card">
+        <h3>WordPress API</h3>
+        <p><code>{API_ENDPOINTS.wordpress}</code></p>
+        <button onclick="testWordPress()">Test Connection</button>
+        <div id="wp-result" class="result"></div>
+      </div>
+      
+      <div class="api-card">
+        <h3>Node.js API</h3>
+        <p><code>{API_ENDPOINTS.nodeApi}</code></p>
+        <button onclick="testNodeAPI()">Test Connection</button>
+        <div id="node-result" class="result"></div>
+      </div>
+      
+      <div class="api-card">
+        <h3>Backend API</h3>
+        <p><code>{API_ENDPOINTS.backend}</code></p>
+        <button onclick="testBackendAPI()">Test Connection</button>
+        <div id="backend-result" class="result"></div>
+      </div>
+    </div>
+    
+    <div class="instructions">
+      <h2>📝 Instructions</h2>
+      <ul>
+        <li>Make sure your backend containers are running</li>
+        <li>Click the "Test Connection" buttons above</li>
+        <li>Update URLs in <code>.env</code> file if needed</li>
+        <li>Check browser console for detailed error messages</li>
+      </ul>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .api-tests {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  
+  .api-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+  }
+  
+  .api-card h3 {
+    color: #ffd700;
+    margin-top: 0;
+  }
+  
+  button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    transition: transform 0.2s;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+  }
+  
+  .result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    min-height: 50px;
+    word-break: break-word;
+  }
+  
+  .result.success {
+    background: rgba(0, 255, 0, 0.2);
+    border: 1px solid rgba(0, 255, 0, 0.5);
+  }
+  
+  .result.error {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid rgba(255, 0, 0, 0.5);
+  }
+  
+  .instructions {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .instructions h2 {
+    color: #ffd700;
+    margin-top: 0;
+  }
+  
+  code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #ffd700;
+  }
+</style>
+
+<script>
+  async function testAPI(url, resultId) {
+    const resultDiv = document.getElementById(resultId);
+    resultDiv.textContent = 'Testing...';
+    resultDiv.className = 'result';
+    
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      if (response.ok) {
+        resultDiv.textContent = `✅ Success! Status: ${response.status}`;
+        resultDiv.className = 'result success';
+      } else {
+        resultDiv.textContent = `❌ Error: ${response.status} - ${response.statusText}`;
+        resultDiv.className = 'result error';
+      }
+    } catch (error) {
+      resultDiv.textContent = `❌ Connection failed: ${error.message}`;
+      resultDiv.className = 'result error';
+    }
+  }
+  
+  function testWordPress() {
+    testAPI('/api/test-wp', 'wp-result');
+  }
+  
+  function testNodeAPI() {
+    testAPI('/api/test-node', 'node-result');
+  }
+  
+  function testBackendAPI() {
+    testAPI('/api/test-backend', 'backend-result');
+  }
+</script>
