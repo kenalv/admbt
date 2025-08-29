@@ -17,7 +17,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - traefik
+      - [webapps]
     labels:
       # Enable Traefik for this service
       - "traefik.enable=true"
@@ -41,5 +41,6 @@ services:
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
 
 networks:
-  traefik:
+  webapps:
     external: true
+    name: webapps
