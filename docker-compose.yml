@@ -17,7 +17,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - [webapps]
+      - webapps
     labels:
       # Enable Traefik for this service
       - "traefik.enable=true"
