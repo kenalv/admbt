@@ -1,9 +1,7 @@
 services:
-  # Astro Frontend - Standalone
+  # Astro Frontend - Traefik Configuration
   astro:
     build: .
-    ports:
-      - "4321:4321"
     environment:
       - NODE_ENV=production
       # Configure these URLs to point to your existing backend containers
@@ -18,14 +16,30 @@ services:
     # Use host networking to connect to external containers
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # Connect to WordPress network if needed
-    #networks:
-    #  - default
-    #  - your-existing-network-name
+    networks:
+      - traefik
+    labels:
+      # Enable Traefik for this service
+      - "traefik.enable=true"
+      
+      # HTTP Router
+      - "traefik.http.routers.astro.rule=Host(`${DOMAIN:-yourdomain.com}`)"
+      - "traefik.http.routers.astro.entrypoints=web"
+      - "traefik.http.routers.astro.middlewares=redirect-to-https"
+      
+      # HTTPS Router
+      - "traefik.http.routers.astro-secure.rule=Host(`${DOMAIN:-yourdomain.com}`)"
+      - "traefik.http.routers.astro-secure.entrypoints=websecure"
+      - "traefik.http.routers.astro-secure.tls=true"
+      - "traefik.http.routers.astro-secure.tls.certresolver=letsencrypt"
+      
+      # Service configuration
+      - "traefik.http.services.astro.loadbalancer.server.port=4321"
+      
+      # Middleware for HTTP to HTTPS redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
 
-# This compose file assumes your backend containers are already running
-# You can also join an existing Docker network if your backends use one:
-# networks:
-#   default:
-#     external:
-#       name: your-existing-network-name
+networks:
+  traefik:
+    external: true

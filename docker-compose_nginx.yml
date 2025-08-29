@@ -1,0 +1,31 @@
+services:
+  # Astro Frontend - Standalone
+  astro:
+    build: .
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=production
+      # Configure these URLs to point to your existing backend containers
+      - BACKEND_API_URL=${BACKEND_API_URL:-http://host.docker.internal:8080/api}
+      - WP_API_URL=${WP_API_URL:-http://host.docker.internal:8090/wp-json/wp/v2}
+      - NODE_API_URL=${NODE_API_URL:-http://host.docker.internal:3001/api}
+      - PYTHON_API_URL=${PYTHON_API_URL:-http://host.docker.internal:8001}
+      - DOTNET_API_URL=${DOTNET_API_URL:-http://host.docker.internal:5000}
+    volumes:
+      - .:/app
+      - /app/node_modules
+    # Use host networking to connect to external containers
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # Connect to WordPress network if needed
+    #networks:
+    #  - default
+    #  - your-existing-network-name
+
+# This compose file assumes your backend containers are already running
+# You can also join an existing Docker network if your backends use one:
+# networks:
+#   default:
+#     external:
+#       name: your-existing-network-name
